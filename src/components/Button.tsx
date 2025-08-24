@@ -14,5 +14,8 @@ export default function Button({ children, variant = "primary" }: Props) {
     danger: "bg-red-500 text-white hover:bg-red-600",
     success: "bg-green-500 text-white hover:bg-green-600",
   };
-  return <button className={`${base} ${variants[variant]}`}>{children}</button>;
+  return (
+  <button className={`${base} ${variants[variant]}`}>
+    {children}
+  </button>)
 }

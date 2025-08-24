@@ -1,17 +1,12 @@
 import React from "react";
 import Card from "./Card";
 import Image from "next/image";
-import Button from "@/components/Button";
+
+import ContactAction from '../../../components/contact-action';
 
 type Props = {};
 
-type contactType = {
-  id: number;
-  nom: string;
-  email: string;
-  tel: string;
-  avatar: string;
-};
+
 
 export default function PageContact({}: Props) {
   const contactsDb: contactType[] = [
@@ -52,24 +47,23 @@ export default function PageContact({}: Props) {
       <Card title="Liste des contacts">
         <div className=" p-4 my-6 w-[75%] ">
           {contactsDb.map((contact) => (
-            <div className="flex justify-around border border-black/10 p-2">
+            <div key={contact.id} className="flex justify-around border border-black/10 p-2">
               <div className="flex">
                 <Image src={`${contact.avatar}`} alt={`${contact.nom}`} width={80} height={80} />
                 <div>
-                  <h1>{contact.nom} </h1>
+                  <h1>{contact.id} - {contact.nom} </h1>
                   <strong>{contact.email} </strong>
                   <p>{contact.tel} </p>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-2">
-                <Button variant="primary">Detail</Button>
-                <Button variant="danger">supprimer</Button>
-              </div>
+        
+             <ContactAction contact={contact} />
             </div>
           ))}
         </div>
       </Card>
+
     </div>
   );
 }
